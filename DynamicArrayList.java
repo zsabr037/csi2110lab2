@@ -1,4 +1,4 @@
-DynamicArrayList<E> implements SimpleList<E>{
+public class DynamicArrayList<E> implements SimpleList<E>{
 	
 	private int size;
 	private E[] array;
@@ -32,7 +32,8 @@ DynamicArrayList<E> implements SimpleList<E>{
 	public E set(int index, E element){
 		if (index < 0 || index >= size){
 			throw new IndexOutBoundsException("Index out of bounds");
-		}		
+		}
+		// method stores and returns the value previously contained at that index.
 		E temp = array[index];
 		array[index] = element;
 		return temp;
@@ -43,7 +44,7 @@ DynamicArrayList<E> implements SimpleList<E>{
 			throw new IndexOutBoundsException("Index out of bounds");
 		}		
 		size++;
-		/* If array reaches max capacity, it doubles in size */
+		/* If array reaches max capacity, it doubles in size. A new array is created */
 		if (size == array.length){
 			E[] newArray = (E[]) new Object[array.length * 2];
 			for (int i = 0; i < index; i++){

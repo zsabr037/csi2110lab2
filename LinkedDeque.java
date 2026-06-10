@@ -1,11 +1,11 @@
 public class LinkedDeque<E> implements Deque<E>{
 	
-	private class Node<E>{
-		E element;
-		Node<E> prev;
-		Node<E> next;
+	private static class Node<T>{
+		T element;
+		Node<T> prev;
+		Node<T> next;
 		
-		private Node(E element, Node<E> prev, Node<E> next){
+		private Node(T element, Node<T> prev, Node<T> next){
 			this.element = element;
 			this.prev = prev;
 			this.next = next;

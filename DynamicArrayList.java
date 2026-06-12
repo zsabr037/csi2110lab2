@@ -21,17 +21,21 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	public boolean isEmpty(){
 		return (size == 0);
 	}
+	/* for testing purposes */
+	public int getCapacity(){
+		return array.length;
+	}
 	
 	public E get(int index){
 		if (index < 0 || index >= size){
-			throw new IndexOutOfBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Illegal Index " + index);
 		}
 		return array[index];
 	}
 	
 	public E set(int index, E element){
 		if (index < 0 || index >= size){
-			throw new IndexOutOfBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Illegal index " + index);
 		}
 		// method stores and returns the value previously contained at that index.
 		E temp = array[index];
@@ -40,10 +44,9 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	}
 	
 	public void add(int index, E element){
-		if (index < 0 || index >= size){
-			throw new IndexOutOfBoundsException("Index out of bounds");
+		if (index < 0 || index > size){
+			throw new IndexOutOfBoundsException("Illegal Index " + index);
 		}		
-		size++;
 		/* If array reaches max capacity, it doubles in size. A new array is created */
 		if (size == array.length){
 			E[] newArray = (E[]) new Object[array.length * 2];
@@ -51,9 +54,10 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 				newArray[i] = array[i];
 			}
 			newArray[index] = element;
-			for (int i = index+1; i < size; i++){
+			for (int i = index + 1; i < size + 1; i++){
 				newArray[i] = array[i-1];
 			}
+			array = newArray;
 		/* If the array does not need to be resized, a for loop moves backwards from the first empty
 		 * position to the first element after the index, moving array elements one position to the
 		 * right. Then, the new element value is inserted on top of the (now cloned) value at the 
@@ -64,14 +68,14 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 			}
 			array[index] = element;
 		}
+		size++;
 	}
 	
 	public E remove(int index){
 		if (index < 0 || index >= size){
-			throw new IndexOutOfBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Illegal Index " + index);
 		}
 		E temp = array[index];
-		size--;
 		/* If array falls to below 1/4 capacity, it's resized down by half.
 		 * One for loop copies over all entries before the chosen index to the new array,
 		 * and another all the entries after it, shifted one to the left in the new array. */
@@ -92,6 +96,7 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 			}
 			array[size-1] = null;
 		}
+		size--;
 		return temp;
 	}
 }

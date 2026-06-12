@@ -70,7 +70,7 @@ public class CircularArrayQueue<E> implements Queue<E>{
 		if (size < (circArray.length / 4)){
 			E[] newArray = (E[]) new Object[circArray.length / 2];
 			for (int i = 0; i < size; i++){
-				newArray[i] = circArray[(front + i) & circArray.length];
+				newArray[i] = circArray[(front + i) % circArray.length];
 			}
 			circArray = newArray;
 			front = 0;

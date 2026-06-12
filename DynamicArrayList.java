@@ -2,7 +2,7 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	
 	private int size;
 	private E[] array;
-	private static final DEFAULT_CAPACITY = 16;
+	private static final int DEFAULT_CAPACITY = 16;
 	
 	public DynamicArrayList(){
 		this.size = 0;
@@ -24,14 +24,14 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	
 	public E get(int index){
 		if (index < 0 || index >= size){
-			throw new IndexOutBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Index out of bounds");
 		}
 		return array[index];
 	}
 	
 	public E set(int index, E element){
 		if (index < 0 || index >= size){
-			throw new IndexOutBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Index out of bounds");
 		}
 		// method stores and returns the value previously contained at that index.
 		E temp = array[index];
@@ -41,7 +41,7 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	
 	public void add(int index, E element){
 		if (index < 0 || index >= size){
-			throw new IndexOutBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Index out of bounds");
 		}		
 		size++;
 		/* If array reaches max capacity, it doubles in size. A new array is created */
@@ -68,7 +68,7 @@ public class DynamicArrayList<E> implements SimpleList<E>{
 	
 	public E remove(int index){
 		if (index < 0 || index >= size){
-			throw new IndexOutBoundsException("Index out of bounds");
+			throw new IndexOutOfBoundsException("Index out of bounds");
 		}
 		E temp = array[index];
 		size--;

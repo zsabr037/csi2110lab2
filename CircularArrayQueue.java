@@ -22,6 +22,14 @@ public class CircularArrayQueue<E> implements Queue<E>{
 		this.circArray = (E[]) new Object[capacity];
 	}
 	
+	/* returns the first occupied index, just to help with testing. returns -1 if array is empty */
+	public int front(){
+		if (isEmpty()){
+			return -1;
+		}
+		return front;
+	}
+	
 	public int size(){
 		return size;
 	}
